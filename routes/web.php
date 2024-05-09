@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebAppController;
 use App\Http\Controllers\ShortLinkController;
+use App\Http\Controllers\FrontEnd\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,17 @@ use App\Http\Controllers\ShortLinkController;
 |
 */
 
-Route::get('/', [WebAppController::class, 'web'])->name('web'); // sementara menunggu halaman depan selesai
+Route::get('/a', [WebAppController::class, 'web'])->name('web'); // sementara menunggu halaman depan selesai
+
+Route::get('/', [WebController::class, 'index'])->name('web.index'); // sementara menunggu halaman depan selesai
+
+
+// Route::get('/', [WebAppController::class, 'web'])->name('web'); // sementara menunggu halaman depan selesai
+
+Route::get('/konten/{kategori}/{slug}', [WebController::class, 'konten'])->name('konten'); // sementara menunggu halaman depan selesai
+Route::get('/konten-list/{kategori}', [WebController::class, 'kontenList'])->name('konten.list'); // sementara menunggu halaman depan selesai
+Route::get('/konten-list-file/{kategori}', [WebController::class, 'kontenListFile'])->name('konten.list.file'); // sementara menunggu halaman depan selesai
+
 
 Route::get('/login', [WebAppController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/set-session', [WebAppController::class, 'setSession'])->name('setSession')->middleware('guest');
